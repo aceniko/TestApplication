@@ -18,7 +18,9 @@ public class TestApplication extends Application {
         super.onCreate();
 
         if (mApplicationComponent == null) {
-            mApplicationComponent = DaggerApplicationComponent.builder()
+            mApplicationComponent = DaggerApplicationComponent
+//                    create();
+                    .builder()
                     .applicationModule(new ApplicationModule(this))
                     .apiModule(new ApiModule())
                     .build();

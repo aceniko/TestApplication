@@ -1,7 +1,7 @@
 package com.testapplication.ui.view;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.testapplication.ui.view.base.BaseView;
 

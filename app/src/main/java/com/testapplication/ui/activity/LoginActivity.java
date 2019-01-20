@@ -1,9 +1,9 @@
 package com.testapplication.ui.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import com.testapplication.R;
 import com.testapplication.ui.activity.base.BaseActivity;
 import com.testapplication.ui.fragment.LoginFragment;

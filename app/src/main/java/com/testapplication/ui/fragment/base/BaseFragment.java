@@ -2,9 +2,9 @@ package com.testapplication.ui.fragment.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +15,6 @@ import com.testapplication.injection.component.FragmentComponent;
 import com.testapplication.injection.module.FragmentModule;
 import com.testapplication.ui.activity.base.BaseActivity;
 import com.testapplication.ui.view.base.BaseView;
-
-import java.util.logging.Filter;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -29,11 +27,13 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     protected void createFragmentComponent(){
         if(mFragmentComponent==null){
-            mFragmentComponent = getActivityComponent().plus(new FragmentModule(this));
+            mFragmentComponent = getActivityComponent()
+                    .plus(new FragmentModule(this));
         }
     }
 
     public FragmentComponent getFragmentComponent(){
+        if(mFragmentComponent == null) createFragmentComponent();
         return mFragmentComponent;
     }
 

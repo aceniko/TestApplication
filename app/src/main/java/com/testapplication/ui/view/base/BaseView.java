@@ -1,6 +1,6 @@
 package com.testapplication.ui.view.base;
 
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 public interface BaseView {
     void showLoading();

@@ -1,15 +1,16 @@
 package com.testapplication.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.testapplication.R;
 import com.testapplication.ui.fragment.base.BaseFragment;
 import com.testapplication.ui.view.LoginView;
-import com.testapplication.ui.view.base.BaseView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -54,6 +55,17 @@ public class LoginFragment extends BaseFragment implements LoginView {
     public void onButtonLoginClick(){
         validateInput();
 
+    }
+
+    private void validateInput(){
+        if(!TextUtils.isEmpty(etUserName.getText())
+                && !TextUtils.isEmpty(etPassword.getText())){
+
+            //call login
+
+        } else {
+            Toast.makeText(getBaseActivity(), "Fill in all fields.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
