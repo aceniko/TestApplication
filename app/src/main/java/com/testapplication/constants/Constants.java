@@ -12,4 +12,7 @@ public final class Constants {
     //getall products query params
     public final static String SKIP_COUNT = "SkipCount";
     public final static String MAX_RESULT_COUNT = "MaxResultCount";
+
+    //arguments
+    public final static String ARGUMENTS = "ARGUMENTS";
 }

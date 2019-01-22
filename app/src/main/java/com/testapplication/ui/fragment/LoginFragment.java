@@ -1,5 +1,6 @@
 package com.testapplication.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
@@ -9,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.testapplication.R;
+import com.testapplication.constants.Constants;
+import com.testapplication.ui.activity.MainActivity;
 import com.testapplication.ui.fragment.base.BaseFragment;
 import com.testapplication.ui.view.LoginView;
 
@@ -28,12 +31,15 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @Override
     public void openMainActivity() {
-
+        openMainActivity(null);
     }
 
     @Override
     public void openMainActivity(@Nullable Bundle arguments) {
-
+        Intent intent = new Intent(getBaseActivity(), MainActivity.class);
+        if(arguments != null)
+            intent.putExtra(Constants.ARGUMENTS, arguments);
+        startActivity(intent);
     }
 
     @Override
@@ -61,7 +67,8 @@ public class LoginFragment extends BaseFragment implements LoginView {
         if(!TextUtils.isEmpty(etUserName.getText())
                 && !TextUtils.isEmpty(etPassword.getText())){
 
-            //call login
+            //TODO: login
+            openMainActivity();
 
         } else {
             Toast.makeText(getBaseActivity(), "Fill in all fields.", Toast.LENGTH_SHORT).show();

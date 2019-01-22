@@ -8,7 +8,9 @@ public interface BaseView {
     void hideLoading();
 
     void openActivityOnTokenExpire();
+
     void onSuccess(Object result);
+
     void onError(@StringRes int resId);
 
     void onError(String message);

@@ -19,11 +19,11 @@ public class TestApplication extends Application {
 
         if (mApplicationComponent == null) {
             mApplicationComponent = DaggerApplicationComponent
-//                    create();
-                    .builder()
-                    .applicationModule(new ApplicationModule(this))
-                    .apiModule(new ApiModule())
-                    .build();
+                    .create();
+//                    .builder()
+//                    .applicationModule(new ApplicationModule(this))
+//                    .apiModule(new ApiModule())
+//                    .build();
         }
         mApplicationComponent.inject(this);
 
