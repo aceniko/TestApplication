@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
-public class ProductsFragment extends BaseFragment implements DataBindingActions {
+public class ProductsFragment extends BaseFragment {
+
+    public static String TAG = ProductsFragment.class.getCanonicalName();
+
 
     BaseAdapter<ProductDto> adapter;
     ArrayList<ProductDto> products;
@@ -85,15 +88,5 @@ public class ProductsFragment extends BaseFragment implements DataBindingActions
     @Override
     public void hideKeyboard() {
 
-    }
-
-    @Override
-    public boolean onClick(View view, Object object) {
-        return true;
-    }
-
-    @Override
-    public boolean onLongClick(View view, Object object) {
-        return true;
     }
 }

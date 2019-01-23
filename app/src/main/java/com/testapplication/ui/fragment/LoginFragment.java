@@ -40,6 +40,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
         if(arguments != null)
             intent.putExtra(Constants.ARGUMENTS, arguments);
         startActivity(intent);
+        getBaseActivity().finish();
     }
 
     @Override

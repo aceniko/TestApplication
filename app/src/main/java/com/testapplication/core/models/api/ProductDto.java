@@ -1,8 +1,11 @@
 package com.testapplication.core.models.api;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class ProductDto {
+public class ProductDto implements Parcelable {
     @SerializedName("name")
     private String name;
     @SerializedName("productNumber")
@@ -25,6 +28,34 @@ public class ProductDto {
     private boolean isDeleted;
     @SerializedName("id")
     private int id;
+
+    public ProductDto(){}
+
+    protected ProductDto(Parcel in) {
+        name = in.readString();
+        productNumber = in.readString();
+        color = in.readString();
+        standardCost = in.readDouble();
+        listPrice = in.readDouble();
+        weight = in.readDouble();
+        dateCreated = in.readString();
+        userComment = in.readString();
+        isActive = in.readByte() != 0;
+        isDeleted = in.readByte() != 0;
+        id = in.readInt();
+    }
+
+    public static final Creator<ProductDto> CREATOR = new Creator<ProductDto>() {
+        @Override
+        public ProductDto createFromParcel(Parcel in) {
+            return new ProductDto(in);
+        }
+
+        @Override
+        public ProductDto[] newArray(int size) {
+            return new ProductDto[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -112,5 +143,25 @@ public class ProductDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(productNumber);
+        dest.writeString(color);
+        dest.writeDouble(standardCost);
+        dest.writeDouble(listPrice);
+        dest.writeDouble(weight);
+        dest.writeString(dateCreated);
+        dest.writeString(userComment);
+        dest.writeByte((byte) (isActive ? 1 : 0));
+        dest.writeByte((byte) (isDeleted ? 1 : 0));
+        dest.writeInt(id);
     }
 }
