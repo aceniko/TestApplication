@@ -1,7 +1,11 @@
 package com.testapplication.ui.fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,6 +19,8 @@ import com.testapplication.ui.fragment.base.BaseFragment;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import butterknife.OnClick;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class ProductDetailsFragment extends BaseFragment {
 
@@ -25,7 +31,13 @@ public class ProductDetailsFragment extends BaseFragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        productDto = getArguments().getParcelable(Constants.ARGUMENTS);
+        if(getArguments() != null
+            && getArguments().containsKey(Constants.ARGUMENTS)) {
+            productDto = getArguments().getParcelable(Constants.ARGUMENTS);
+        } else {
+            productDto = new ProductDto();
+        }
+
         ViewDataBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_product_details, container, false);
         View view = binding.getRoot();
@@ -37,7 +49,25 @@ public class ProductDetailsFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         setUp(view);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            //edit
+            //change icon to save and open all fields
+            //save
+            //save product to api and return to list
+        }
+        return true;
     }
 
     @Override
@@ -52,7 +82,8 @@ public class ProductDetailsFragment extends BaseFragment {
 
     @Override
     protected void setUp(View view) {
-
+        if(!TextUtils.isEmpty(productDto.getName())){
+        }
     }
 
     @Override

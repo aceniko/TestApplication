@@ -2,6 +2,7 @@ package com.testapplication.ui.fragment;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.testapplication.R;
 import com.testapplication.core.models.api.ProductDto;
@@ -11,10 +12,14 @@ import com.testapplication.ui.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class ProductsFragment extends BaseFragment {
 
@@ -88,5 +93,14 @@ public class ProductsFragment extends BaseFragment {
     @Override
     public void hideKeyboard() {
 
+    }
+
+    @OnClick(R.id.btn_add)
+    public void onClickAdd(){
+        FragmentManager fragmentManager = getBaseActivity().getSupportFragmentManager();
+        Fragment fragment = new ProductDetailsFragment();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment, fragment.getClass().getCanonicalName());
+        fragmentTransaction.commitAllowingStateLoss();
     }
 }

@@ -11,9 +11,14 @@ import android.widget.Toast;
 
 import com.testapplication.R;
 import com.testapplication.constants.Constants;
+import com.testapplication.core.models.api.AuthenticateModel;
 import com.testapplication.ui.activity.MainActivity;
 import com.testapplication.ui.fragment.base.BaseFragment;
+import com.testapplication.ui.presenter.LoginPresenter;
 import com.testapplication.ui.view.LoginView;
+import com.testapplication.ui.view.base.BaseView;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,6 +33,15 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @BindView(R.id.editTextPassword)
     EditText etPassword;
+
+    @Inject
+    LoginPresenter presenter;
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setUp(view);
+    }
 
     @Override
     public void openMainActivity() {
@@ -55,7 +69,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @Override
     protected void setUp(View view) {
-
+        presenter.onAttach(this);
     }
 
     @OnClick(R.id.button_login)
@@ -68,9 +82,13 @@ public class LoginFragment extends BaseFragment implements LoginView {
         if(!TextUtils.isEmpty(etUserName.getText())
                 && !TextUtils.isEmpty(etPassword.getText())){
 
-            //TODO: login
-            openMainActivity();
+            AuthenticateModel request = new AuthenticateModel();
+            request.setUserNameOrEmailAddress(etUserName.getText().toString());
+            request.setPassword(etPassword.getText().toString());
+            request.setRememberClient(false);
+            presenter.authenticate(request);
 
+            openMainActivity();
         } else {
             Toast.makeText(getBaseActivity(), "Fill in all fields.", Toast.LENGTH_SHORT).show();
         }

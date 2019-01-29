@@ -23,11 +23,11 @@ public class BasePresenter<V extends BaseView> implements MvpPresenter<V> {
 
     @Override
     public void onAttach(V mvpView) {
-
+        this.mMvpView = mvpView;
     }
 
     @Override
     public void onDetach() {
-
+        this.mMvpView = null;
     }
 }
